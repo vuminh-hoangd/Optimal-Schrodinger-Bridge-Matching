@@ -1,6 +1,3 @@
-[README.md](https://github.com/user-attachments/files/29735767/README.md)
-# Optimal-Schr-dinger-Bridge-Matching
-corrected math derivation of LightSB-M
 # Schrödinger Bridge Matching
 
 **Author:** Hoang Dung Vu Minh
