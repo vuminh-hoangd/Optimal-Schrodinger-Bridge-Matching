@@ -12,7 +12,7 @@ $$\mathbb{P}^\star = \arg\min_{\mathbb{P}^u \in \mathcal{P}(C([0,T];\mathbb{R}^d
 
 By Girsanov's theorem, the path-space KL divergence reduces to a kinetic energy cost over the control drift $u$:
 
-$$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{X_{0:T} \sim \mathbb{P}^u}\left[\int_0^T \frac{1}{2}\|u(X_t, t)\|^2\, dt\right]$$
+$$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{X_{0:T} \sim \mathbb{P}^u}\left[\int_0^T \frac{1}{2}\|u(X_t, t)\|^2 dt\right]$$
 
 ---
 
