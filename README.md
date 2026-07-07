@@ -1,4 +1,4 @@
-# Schrödinger Bridge Matching
+# Optimal Schrödinger Bridge Matching
 
 ---
 
