@@ -1,7 +1,5 @@
 # Schrödinger Bridge Matching
 
-**Author:** Hoang Dung Vu Minh
-
 ---
 
 ## Problem Formulation
