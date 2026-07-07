@@ -15,7 +15,7 @@ $$\mathbb{P}^\star = \arg\min_{\mathbb{P}^u \in \mathcal{P}(\mathcal{C}([0,T];\m
 
 By Girsanov's theorem, the path-space KL divergence reduces to a kinetic energy cost over the control drift $u$:
 
-$$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{X_{0:T} \sim \mathbb{P}^u}\!\left[\int_0^T \frac{1}{2}\|u(X_t, t)\|^2\, dt\right]$$
+$$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{X_{0:T} \sim \mathbb{P}^u}\left[\int_0^T \frac{1}{2}\|u(X_t, t)\|^2\, dt\right]$$
 
 ---
 
@@ -29,9 +29,7 @@ When $\mathbb{Q} = \mathbb{W}^\epsilon$ with $f \equiv 0$ and $\sigma_t = \sqrt{
 
 **LightSB-M** parameterizes $v_\theta$ as a Gaussian mixture and optimizes the bridge matching loss:
 
-$$\mathcal{L}(\theta) = \frac{1}{2\epsilon}\int_0^T \mathbb{E}\!\left[\left\|\sigma_t u_{v_\theta}(X_t,t) - \frac{X_T - X_t}{T - t}\right\|^2\right]dt$$
-
-Both the drift and the conditional sampler $(\pi^{SB}_{v_\theta})_{T|0}(\cdot \mid x_0)$ are available in closed form, enabling exact trajectory generation without an SDE solver.
+$$\mathcal{L}(\theta) = \frac{1}{2\epsilon}\int_0^T \mathbb{E}\left[\left\|\sigma_t u_{v_\theta}(X_t,t) - \frac{X_T - X_t}{T - t}\right\|^2\right]dt$$
 
 ---
 
