@@ -11,17 +11,17 @@ corrected math derivation of LightSB-M
 
 Given two marginal distributions $\pi_0, \pi_T \in \mathcal{P}(\mathbb{R}^d)$ and a reference path measure $Q \in \mathcal{P}(\mathcal{C}([0,T];\mathbb{R}^d))$ defined by the SDE $dX_t = f(X_t,t)\,dt + \sigma_t\,dB_t$, the **dynamic Schrödinger Bridge** seeks the path measure $P^\star$ of minimal KL divergence from $Q$ subject to the marginal constraints:
 
-$$P^\star = \argmin_{P^u \in \mathcal{P}(\mathcal{C}([0,T];\mathbb{R}^d))} \mathrm{KL}(P^u \| Q) \quad \text{s.t.} \quad P^u_0 = \pi_0,\; P^u_T = \pi_T$$
+$$P^\star = \arg\min_{P^u \in \mathcal{P}(\mathcal{C}([0,T];\mathbb{R}^d))} \mathrm{KL}(P^u \| Q) \quad \text{s.t.} \quad P^u_0 = \pi_0,\; P^u_T = \pi_T$$
 
 By Girsanov's theorem, the path-space KL divergence reduces to a kinetic energy cost over the control drift $u$:
 
-$$\mathrm{KL}(\mathcal{P}^u \| \mathcal{Q}) = \mathbb{E}_{X_{0:T} \sim \mathcal{P}^u}\!\left[\int_0^T \frac{1}{2}\|u(X_t, t)\|^2\, dt\right]$$
+$$\mathrm{KL}(\mathbbl{P}^u \| \mathcal{Q}) = \mathbb{E}_{X_{0:T} \sim \mathbbl{P}^u}\!\left[\int_0^T \frac{1}{2}\|u(X_t, t)\|^2\, dt\right]$$
 
 ---
 
 ## Wiener Prior
 
-When $\mathcal{P} = \mathcal{W}^\epsilon$ with $f \equiv 0$ and $\sigma_t = \sqrt{\epsilon}$, the problem reduces to learning the **adjusted Schrödinger potential** $v^\star : \mathbb{R}^d \to \mathbb{R}_+$, which fully determines both the optimal coupling and the optimal drift.
+When $\mathbbl{P} = \mathbb{W}^\epsilon$ with $f \equiv 0$ and $\sigma_t = \sqrt{\epsilon}$, the problem reduces to learning the **adjusted Schrödinger potential** $v^\star : \mathbb{R}^d \to \mathbb{R}_+$, which fully determines both the optimal coupling and the optimal drift.
 
 ---
 
