@@ -26,9 +26,15 @@ $$
 
 ## LightSB-M
 
-**LightSB-M** parameterizes $v_\theta$ as a Gaussian mixture and optimizes the bridge matching loss:
+**LightSB-M** parameterizes $v_\theta (x_T) = \sum_{k=1}^K \mathcal{N}(x_T \mid \mu_k, \epsilon \Sigma_k)$ as a Gaussian mixture and optimizes the bridge matching loss:
 
 $$\mathcal{L}(\theta) = \frac{1}{2\epsilon}\int_0^T \mathbb{E}\left[\left\|\sigma_t u_{v_\theta}(X_t,t) - \frac{X_T - X_t}{T - t}\right\|^2\right]dt$$
+
+where 
+
+$$
+u_{v_\theta}(x, t) = \sqrt{\epsilon} \nabla_x \log \left( \int_{\mathbb{R}^d} \mathcal{N}(x_T \mid x, (T-t) I_d) e^{\frac{|x_T|^2}{2\epsilon}} v_\theta (x_T) \, dx_T \right)
+$$
 
 ---
 
