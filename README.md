@@ -30,12 +30,14 @@ $$
 
 $$\mathcal{L}(\theta) = \frac{1}{2\epsilon}\int_0^T \mathbb{E}\left[\left\|\sigma_t \boldsymbol{u}_{v_\theta}(\boldsymbol{X}_t,t) - \frac{\boldsymbol{X}_T - \boldsymbol{X}_t}{T - t}\right\|^2\right]dt$$
 
-where the drift $\sigma_t \mathbf{u}_{\theta}(\mathbf{x}, t)$ admits the **corrected** closed form:
+where the drift $\sigma_t \boldsymbol{u}_{\theta}(\mathbf{x}, t)$ admits the **corrected** closed form:
 
 $$
-\sigma_t \mathbf{u}_{\theta}(\mathbf{x}, t) = \epsilon \nabla_\mathbf{x} \log \left( \mathcal{N}(\mathbf{x} | 0, (T-t)\epsilon \mathbf{I}_d) \sum_{k=1}^{K} \alpha_k \mathcal{N}(\boldsymbol{\mu}_k | 0, \epsilon \boldsymbol{\Sigma}_k) \mathcal{N} \big( \mathbf{A}_k(t)^{-1} \mathbf{h}_k(t) \,\big|\, 0, \mathbf{A}_k(t)^{-1} \big) \right)
+\sigma_t \boldsymbol{u}_{\theta}(\mathbf{x}, t) = \epsilon \nabla_\mathbf{x} \log \left( \mathcal{N}(\mathbf{x} | 0, (T-t)\epsilon \mathbf{I}_d) \sum_{k=1}^{K} \alpha_k \mathcal{N}(\mu_k | 0, \epsilon \boldsymbol{\Sigma}_k) \mathcal{N} \big( \boldsymbol{A}_k(t)^{-1} \boldsymbol{h}_k(t) \,\big|\, 0, \boldsymbol{A}_k(t)^{-1} \big) \right)
 $$
 
+where $\boldsymbol{A}_k(t) := \frac{t}{T(T-t)\epsilon} \mathbf{I}_d + \frac{\boldsymbol{\Sigma}_k^{-1}}{\epsilon}$, 
+$\boldsymbol{h}_k(\mathbf{x}, t) := \frac{1}{\epsilon} \left( \frac{\mathbf{x}}{T-t} + \boldsymbol{\Sigma}_k^{-1} \boldsymbol{\mu}_k \right)$.
 
 
 ---
