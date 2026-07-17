@@ -17,6 +17,7 @@ $$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{X_{0:T} \sim \mathbb{P}^
 ## Wiener Prior
 
 When $\mathbb{Q} = \mathbb{W}^\epsilon$ with $f \equiv 0$ and $\sigma_t = \sqrt{\epsilon}$, the problem reduces to learning the **adjusted Schrödinger potential** $v^\star : \mathbb{R}^d \to \mathbb{R}_+$, which fully determines both the optimal coupling and the optimal drift of $\mathbb{P}^*$:
+
 $$
 u^*(x, t) = \sqrt{\epsilon} \nabla_x \log \left( \int_{\mathbb{R}^d} \mathcal{N}(x_T \mid x, (T-t)\mathbf{I}_d) e^{\frac{\|x_T\|^2}{2\epsilon}} v^*(x_T) \, dx_T \right)
 $$
