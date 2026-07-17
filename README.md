@@ -30,12 +30,6 @@ $$
 
 $$\mathcal{L}(\theta) = \frac{1}{2\epsilon}\int_0^T \mathbb{E}\left[\left\|\sigma_t u_{v_\theta}(X_t,t) - \frac{X_T - X_t}{T - t}\right\|^2\right]dt$$
 
-where 
-
-$$
-u_{v_\theta}(x, t) = \sqrt{\epsilon} \nabla_x \log \left( \int_{\mathbb{R}^d} \mathcal{N}(x_T \mid x, (T-t) I_d) e^{\frac{|x_T|^2}{2\epsilon}} v_\theta (x_T) \, dx_T \right)
-$$
-
 ---
 
 ## References
