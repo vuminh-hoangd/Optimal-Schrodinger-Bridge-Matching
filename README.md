@@ -16,7 +16,7 @@ $$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{X_{0:T} \sim \mathbb{P}^
 
 ## Wiener Prior
 
-When $\mathbb{Q} = \mathbb{W}^\epsilon$ with $f \equiv 0$ and $\sigma_t = \sqrt{\epsilon}$, the problem reduces to learning the **adjusted Schrödinger potential** $v^\star : \mathbb{R}^d \to \mathbb{R}_+$, which fully determines both the optimal coupling and the optimal drift of $\mathbb{P}^*$:
+When $\mathbb{Q} = \mathbb{W}^\epsilon$ with $f \equiv 0$ and $\sigma_t = \sqrt{\epsilon}$, the problem reduces to learning the **adjusted Schrödinger potential** $v^\star : \mathbb{R}^d \to \mathbb{R}_+$, which fully determines both the optimal coupling and the optimal drift of $\mathbb{P}^\star $:
 
 $$
 u^\star(x, t) = \sqrt{\epsilon} \nabla_x \log \left( \int_{\mathbb{R}^d} \mathcal{N}(x_T \mid x, (T-t) I_d) e^{\frac{|x_T|^2}{2\epsilon}} v^\star(x_T) \, dx_T \right)
@@ -29,6 +29,14 @@ $$
 **LightSB-M** parameterizes $v_\theta (x_T) = \sum_{k=1}^K \mathcal{N}(x_T \mid \mu_k, \epsilon \Sigma_k)$ as a Gaussian mixture and optimizes the bridge matching loss:
 
 $$\mathcal{L}(\theta) = \frac{1}{2\epsilon}\int_0^T \mathbb{E}\left[\left\|\sigma_t u_{v_\theta}(X_t,t) - \frac{X_T - X_t}{T - t}\right\|^2\right]dt$$
+
+where the drift $\sigma_t \mathbf{u}_{\theta}(\mathbf{x}, t)$ admits the **corrected** closed form:
+
+$$
+\sigma_t \mathbf{u}_{\theta}(\mathbf{x}, t) = \epsilon \nabla_x \log \left( \mathcal{N}(\mathbf{x} | 0, (T-t)\epsilon \mathbf{I}_d) \sum_{k=1}^{K} \alpha_k \mathcal{N}(\boldsymbol{\mu}_k | 0, \epsilon \boldsymbol{\Sigma}_k) \mathcal{N} \big( \mathbf{A}_k(t)^{-1} \mathbf{h}_k(t) \,\big|\, 0, \mathbf{A}_k(t)^{-1} \big) \right)
+$$
+
+
 
 ---
 
