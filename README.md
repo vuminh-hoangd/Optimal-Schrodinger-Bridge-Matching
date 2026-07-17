@@ -42,7 +42,7 @@ $\boldsymbol{h}_k(\mathbf{x}, t) := \frac{1}{\epsilon} \left( \frac{\mathbf{x}}{
 ## Experimental Results
 
 ### Experiment 1: Swiss Roll
-<img src="images/swiss-full-ind.png" width="800" alt="Swiss Roll Experiment">
+<img src="images/swiss-full-ind.png" width="1000" alt="Swiss Roll Experiment">
 
 ### Experiment 2: 3-to-8 Trajectory Mapping
 Here are the pipeline visualization and generated trajectories for the 3-to-8 experiment:
@@ -50,7 +50,7 @@ Here are the pipeline visualization and generated trajectories for the 3-to-8 ex
 <table>
   <tr>
     <td align="center"><b>Pipeline</b><br><img src="images/3to8-pipeline.png" width="400"/></td>
-    <td align="center"><b>Trajectory</b><br><img src="images/3to8-trajectory.png" width="400"/></td>
+    <td align="center"><b>Trajectory</b><br><img src="images/3to8-trajectory.png" width="600"/></td>
   </tr>
 </table>
 
