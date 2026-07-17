@@ -4,13 +4,13 @@
 
 ## Problem Formulation
 
-Given two marginal distributions $\pi_0, \pi_T \in \mathcal{P}(\mathbb{R}^d)$ and a reference path measure $Q \in \mathcal{P}(C([0,T];\mathbb{R}^d))$ defined by the SDE $dX_t = f(X_t,t)\,dt + \sigma_tdB_t$, the **dynamic Schrödinger Bridge** seeks the path measure $\mathbb{P}^\star$ of minimal KL divergence from $\mathbb{Q}$ subject to the marginal constraints:
+Given two marginal distributions $\pi_0, \pi_T \in \mathcal{P}(\mathbb{R}^d)$ and a reference path measure $Q \in \mathcal{P}(C([0,T];\mathbb{R}^d))$ defined by the SDE $d\boldsymbol{X}_t = f(\boldsymbol{X}_t,t)\,dt + \sigma_td\boldsymbol{B}_t$, the **dynamic Schrödinger Bridge** seeks the path measure $\mathbb{P}^\star$ of minimal KL divergence from $\mathbb{Q}$ subject to the marginal constraints:
 
-$$\mathbb{P}^\star = \arg\min_{\mathbb{P}^u \in \mathcal{P}(C([0,T];\mathbb{R}^d))} \mathrm{KL}(\mathbb{P}^u  \| \mathbb{Q} ) \quad \text{s.t.} \quad \mathbb{P}^u _0 = \pi_0,\; \mathbb{P}^u _T = \pi_T$$
+$$\mathbb{P}^\star = \arg\min_{\mathbb{P}^\boldsymbol{u} \in \mathcal{P}(C([0,T];\mathbb{R}^d))} \mathrm{KL}(\mathbb{P}^\boldsymbol{u}  \| \mathbb{Q} ) \quad \text{s.t.} \quad \mathbb{P}^\boldsymbol{u} _0 = \pi_0,\; \mathbb{P}^\boldsymbol{u} _T = \pi_T$$
 
-By Girsanov's theorem, the path-space KL divergence reduces to a kinetic energy cost over the control drift $u$:
+By Girsanov's theorem, the path-space KL divergence reduces to a kinetic energy cost over the control drift $\boldsymbol{u}$:
 
-$$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{X_{0:T} \sim \mathbb{P}^u}\left[\int_0^T \frac{1}{2}\|u(X_t, t)\|^2 dt\right]$$
+$$\mathrm{KL}(\mathbb{P}^\boldsymbol{u} \| \mathbb{Q}) = \mathbb{E}_{\boldsymbol{X}_{0:T} \sim \mathbb{P}^\boldsymbol{u}}\left[\int_0^T \frac{1}{2}\|\boldsymbol{u}(\boldsymbol{X}_t, t)\|^2 dt\right]$$
 
 ---
 
@@ -19,21 +19,21 @@ $$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{X_{0:T} \sim \mathbb{P}^
 When $\mathbb{Q} = \mathbb{W}^\epsilon$ with $f \equiv 0$ and $\sigma_t = \sqrt{\epsilon}$, the problem reduces to learning the **adjusted Schrödinger potential** $v^\star : \mathbb{R}^d \to \mathbb{R}_+$, which fully determines both the optimal coupling and the optimal drift of $\mathbb{P}^\star $:
 
 $$
-u^\star(x, t) = \sqrt{\epsilon} \nabla_x \log \left( \int_{\mathbb{R}^d} \mathcal{N}(x_T \mid x, (T-t) I_d) e^{\frac{|x_T|^2}{2\epsilon}} v^\star(x_T) \, dx_T \right)
+\boldsymbol{u}^\star(\mathbf{x}, t) = \sqrt{\epsilon} \nabla_\mathbf{x} \log \left( \int_{\mathbb{R}^d} \mathcal{N}(\mathbf{x_T} \mid \mathbf{x}, (T-t) I_d) e^{\frac{|\mathbf{x_T}|^2}{2\epsilon}} v^\star(\mathbf{x_T}) \, d\mathbf{x_T} \right)
 $$
 
 ---
 
 ## LightSB-M
 
-**LightSB-M** parameterizes $v_\theta (x_T) = \sum_{k=1}^K \mathcal{N}(x_T \mid \mu_k, \epsilon \Sigma_k)$ as a Gaussian mixture and optimizes the bridge matching loss:
+**LightSB-M** parameterizes $v_\theta (\mathbf{x_T}) = \sum_{k=1}^K \mathcal{N}(\mathbf{x_T} \mid \mu_k, \epsilon \Sigma_k)$ as a Gaussian mixture and optimizes the bridge matching loss:
 
-$$\mathcal{L}(\theta) = \frac{1}{2\epsilon}\int_0^T \mathbb{E}\left[\left\|\sigma_t u_{v_\theta}(X_t,t) - \frac{X_T - X_t}{T - t}\right\|^2\right]dt$$
+$$\mathcal{L}(\theta) = \frac{1}{2\epsilon}\int_0^T \mathbb{E}\left[\left\|\sigma_t \boldsymbol{u}_{v_\theta}(\boldsymbol{X}_t,t) - \frac{\boldsymbol{X}_T - \boldsymbol{X}_t}{T - t}\right\|^2\right]dt$$
 
 where the drift $\sigma_t \mathbf{u}_{\theta}(\mathbf{x}, t)$ admits the **corrected** closed form:
 
 $$
-\sigma_t \mathbf{u}_{\theta}(\mathbf{x}, t) = \epsilon \nabla_x \log \left( \mathcal{N}(\mathbf{x} | 0, (T-t)\epsilon \mathbf{I}_d) \sum_{k=1}^{K} \alpha_k \mathcal{N}(\boldsymbol{\mu}_k | 0, \epsilon \boldsymbol{\Sigma}_k) \mathcal{N} \big( \mathbf{A}_k(t)^{-1} \mathbf{h}_k(t) \,\big|\, 0, \mathbf{A}_k(t)^{-1} \big) \right)
+\sigma_t \mathbf{u}_{\theta}(\mathbf{x}, t) = \epsilon \nabla_\mathbf{x} \log \left( \mathcal{N}(\mathbf{x} | 0, (T-t)\epsilon \mathbf{I}_d) \sum_{k=1}^{K} \alpha_k \mathcal{N}(\boldsymbol{\mu}_k | 0, \epsilon \boldsymbol{\Sigma}_k) \mathcal{N} \big( \mathbf{A}_k(t)^{-1} \mathbf{h}_k(t) \,\big|\, 0, \mathbf{A}_k(t)^{-1} \big) \right)
 $$
 
 
