@@ -39,6 +39,20 @@ $$
 where $\boldsymbol{A}_k(t) := \frac{t}{T(T-t)\epsilon} \mathbf{I}_d + \frac{\boldsymbol{\Sigma}_k^{-1}}{\epsilon}$, 
 $\boldsymbol{h}_k(\mathbf{x}, t) := \frac{1}{\epsilon} \left( \frac{\mathbf{x}}{T-t} + \boldsymbol{\Sigma}_k^{-1} \boldsymbol{\mu}_k \right)$.
 
+## Experimental Results
+
+### Experiment 1: Swiss Roll
+<img src="images/swiss-full-ind.png" width="600" alt="Swiss Roll Experiment">
+
+### Experiment 2: 3-to-8 Trajectory Mapping
+Here are the pipeline visualization and generated trajectories for the 3-to-8 experiment:
+
+<table>
+  <tr>
+    <td align="center"><b>Pipeline</b><br><img src="images/3to8-pipeline.png" width="400"/></td>
+    <td align="center"><b>Trajectory</b><br><img src="images/3to8-trajectory.png" width="400"/></td>
+  </tr>
+</table>
 
 ---
 
