@@ -4,7 +4,7 @@
 
 ## Problem Formulation
 
-Given two marginal distributions $\pi_0, \pi_T \in \mathcal{P}(\mathbb{R}^d)$ and a reference path measure $Q \in \mathcal{P}(C([0,T];\mathbb{R}^d))$ defined by the SDE $d\boldsymbol{X}_t = f(\boldsymbol{X}_t,t)dt + \sigma_td\boldsymbol{B}_t$, the **dynamic Schrödinger Bridge** seeks the path measure $\mathbb{P}^\star$ of minimal KL divergence from $\mathbb{Q}$ subject to the marginal constraints:
+Given two marginal distributions $\pi_0, \pi_T \in \mathcal{P}(\mathbb{R}^d)$ and a reference path measure $Q \in \mathcal{P}(C([0,T];\mathbb{R}^d))$ defined by the SDE $d\boldsymbol{X}_t = \boldsymbol{f}(\boldsymbol{X}_t,t)dt + \sigma_td\boldsymbol{B}_t$, the **dynamic Schrödinger Bridge** seeks the path measure $\mathbb{P}^\star$ of minimal KL divergence from $\mathbb{Q}$ subject to the marginal constraints:
 
 $$\mathbb{P}^\star = \arg\min_{\mathbb{P}^u \in \mathcal{P}(C([0,T];\mathbb{R}^d))} \mathrm{KL}(\mathbb{P}^u  \| \mathbb{Q} ) \quad \text{s.t.} \quad \mathbb{P}^u _0 = \pi_0,\; \mathbb{P}^u _T = \pi_T$$
 
@@ -16,7 +16,7 @@ $$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{\boldsymbol{X}_{0:T} \si
 
 ## Wiener Prior
 
-When $\mathbb{Q} = \mathbb{W}^\epsilon$ with $f \equiv 0$ and $\sigma_t = \sqrt{\epsilon}$, the problem reduces to learning the **adjusted Schrödinger potential** $v^\star : \mathbb{R}^d \to \mathbb{R}_+$, which fully determines both the optimal coupling and the optimal drift of $\mathbb{P}^\star $:
+When $\mathbb{Q} = \mathbb{W}^\epsilon$ with $\boldsymbol{f} \equiv 0$ and $\sigma_t = \sqrt{\epsilon}$, the problem reduces to learning the **adjusted Schrödinger potential** $v^\star : \mathbb{R}^d \to \mathbb{R}_+$, which fully determines both the optimal coupling and the optimal drift of $\mathbb{P}^\star $:
 
 $$
 \boldsymbol{u}^\star(\mathbf{x}, t) = \sqrt{\epsilon} \nabla_\mathbf{x} \log \left( \int_{\mathbb{R}^d} \mathcal{N}(\mathbf{x_T} \mid \mathbf{x}, (T-t) \mathbf{I}_d ) e^{\frac{|\mathbf{x_T}|^2}{2\epsilon}} v^\star(\mathbf{x_T})  d\mathbf{x_T} \right)
