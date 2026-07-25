@@ -19,14 +19,14 @@ $$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{\boldsymbol{X}_{0:T} \si
 When $\mathbb{Q} = \mathbb{W}^\epsilon$ with $\boldsymbol{f} \equiv 0$ and $\sigma_t = \sqrt{\epsilon}$, the problem reduces to learning the **adjusted Schrödinger potential** $v^\star : \mathbb{R}^d \to \mathbb{R}_+$, which fully determines both the optimal coupling and the optimal drift of $\mathbb{P}^\star $:
 
 $$
-\boldsymbol{u}^\star(\mathbf{x}, t) = \sqrt{\epsilon} \nabla_\mathbf{x} \log \left( \int_{\mathbb{R}^d} \mathcal{N}(\mathbf{x_T} \mid \mathbf{x}, (T-t) \mathbf{I}_d ) e^{\frac{|\mathbf{x_T}|^2}{2\epsilon}} v^\star(\mathbf{x}_T)  d\mathbf{x}_T \right)
+\boldsymbol{u}^\star(\mathbf{x}, t) = \sqrt{\epsilon} \nabla_\mathbf{x} \log \left( \int_{\mathbb{R}^d} \mathcal{N}(\mathbf{x}_T \mid \mathbf{x}, (T-t) \mathbf{I}_d ) e^{\frac{|\mathbf{x}_T|^2}{2\epsilon}} v^\star(\mathbf{x}_T)  d\mathbf{x}_T \right)
 $$
 
 ---
 
 ## LightSB-M
 
-**LightSB-M** parameterizes $v_\theta (\mathbf{x_T}) = \sum_{k=1}^K \mathcal{N}(\mathbf{x_T} \mid \mu_k, \epsilon \Sigma_k)$ as a Gaussian mixture and optimizes the bridge matching loss:
+**LightSB-M** parameterizes $v_\theta (\mathbf{x}_T) = \sum_{k=1}^K \mathcal{N}(\mathbf{x}_T \mid \mu_k, \epsilon \Sigma_k)$ as a Gaussian mixture and optimizes the bridge matching loss:
 
 $$\mathcal{L}(\theta) = \frac{1}{2\epsilon}\int_0^T \mathbb{E}\left[\left\|\sigma_t \boldsymbol{u}_{v_\theta}(\boldsymbol{X}_t,t) - \frac{\boldsymbol{X}_T - \boldsymbol{X}_t}{T - t}\right\|^2\right]dt$$
 
