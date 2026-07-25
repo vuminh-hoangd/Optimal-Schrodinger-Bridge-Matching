@@ -19,7 +19,7 @@ $$\mathrm{KL}(\mathbb{P}^u \| \mathbb{Q}) = \mathbb{E}_{\boldsymbol{X}_{0:T} \si
 When $\mathbb{Q} = \mathbb{W}^\epsilon$ with $\boldsymbol{f} \equiv 0$ and $\sigma_t = \sqrt{\epsilon}$, the problem reduces to learning the **adjusted Schrödinger potential** $v^\star : \mathbb{R}^d \to \mathbb{R}_+$, which fully determines both the optimal coupling and the optimal drift of $\mathbb{P}^\star $:
 
 $$
-\boldsymbol{u}^\star(\mathbf{x}, t) = \sqrt{\epsilon} \nabla_\mathbf{x} \log \left( \int_{\mathbb{R}^d} \mathcal{N}(\mathbf{x_T} \mid \mathbf{x}, (T-t) \mathbf{I}_d ) e^{\frac{|\mathbf{x_T}|^2}{2\epsilon}} v^\star(\mathbf{x_T})  d\mathbf{x_T} \right)
+\boldsymbol{u}^\star(\mathbf{x}, t) = \sqrt{\epsilon} \nabla_\mathbf{x} \log \left( \int_{\mathbb{R}^d} \mathcal{N}(\mathbf{x_T} \mid \mathbf{x}, (T-t) \mathbf{I}_d ) e^{\frac{|\mathbf{x_T}|^2}{2\epsilon}} v^\star(\mathbf{x}_T)  d\mathbf{x}_T \right)
 $$
 
 ---
