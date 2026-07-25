@@ -24,7 +24,7 @@ $$
 
 ---
 
-**LightSB-M** parameterizes $v_\theta(\boldsymbol{x}\_T) = \sum\_{k=1}^K \alpha\_k \mathcal{N}(\boldsymbol{x}\_T \mid \boldsymbol{\mu}\_k, \boldsymbol{\Sigma}\_k)$ as a Gaussian mixture and optimizes the bridge matching loss:
+**LightSB-M** parameterizes $v_\theta(\boldsymbol{x}\_T) = \sum\_{k=1}^K \alpha\_k \mathcal{N}(\boldsymbol{x}\_T \mid \boldsymbol{\mu}\_k, \epsilon \boldsymbol{\Sigma}\_k)$ as a Gaussian mixture and optimizes the bridge matching loss:
 
 $$
 \mathcal{L}(\theta) = \frac{1}{2\epsilon} \int_0^T \mathbb{E}\left[ \left\| \sigma_t \boldsymbol{u}_{v_\theta}(\boldsymbol{X}_t, t) - \frac{\boldsymbol{X}_T - \boldsymbol{X}_t}{T - t} \right\|^2 \right] dt
@@ -33,7 +33,7 @@ $$
 where the drift $\sigma_t \boldsymbol{u}_{\theta}(\boldsymbol{x}, t)$ admits the **corrected** closed form:
 
 $$
-\sigma_t \mathbf{u}_{v_\theta}(\mathbf{x}, t) = \epsilon \nabla_{\mathbf{x}} \log \left( \mathcal{N}\big(\mathbf{x} \mid \mathbf{0}, (T-t)\epsilon \mathbf{I}_d\big) \sum_{k=1}^{K} \alpha_k \mathcal{N}(\boldsymbol{\mu}_k \mid \mathbf{0}, \epsilon \boldsymbol{\Sigma}_k) \mathcal{N}\left( \boldsymbol{A}_k(t)^{-1} \boldsymbol{h}_k(\mathbf{x}, t) \;\middle|\; \mathbf{0}, \boldsymbol{A}_k(t)^{-1} \right) \right)
+\sigma_t \mathbf{u}_{v_\theta}(\mathbf{x}, t) = \epsilon \nabla_{\mathbf{x}} \log \left( \mathcal{N}\big(\mathbf{x} \mid \mathbf{0}, (T-t)\epsilon \mathbf{I}_d\big) \sum_{k=1}^{K} \alpha_k \mathcal{N}(\boldsymbol{\mu}_k \mid \mathbf{0}, \epsilon \boldsymbol{\Sigma}_k) \mathcal{N}\left( \boldsymbol{A}_k(t)^{-1} \boldsymbol{h}_k(\mathbf{x}, t) | \mathbf{0}, \boldsymbol{A}_k(t)^{-1} \right) \right)
 $$
 
 where
