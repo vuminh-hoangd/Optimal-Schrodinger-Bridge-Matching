@@ -24,23 +24,23 @@ $$
 
 ---
 
-## LightSB-M
-
-**LightSB-M** parameterizes $v_\theta(\mathbf{x}_T) = \sum_{k=1}^K \alpha_k \mathcal{N}(\mathbf{x}_T \mid \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)$ as a Gaussian mixture and optimizes the bridge matching loss:
+**LightSB-M** parameterizes $v_\theta(\boldsymbol{x}\_T) = \sum\_{k=1}^K \alpha\_k \mathcal{N}(\boldsymbol{x}\_T \mid \boldsymbol{\mu}\_k, \boldsymbol{\Sigma}\_k)$ as a Gaussian mixture and optimizes the bridge matching loss:
 
 $$
-\mathcal{L}(\theta) = \frac{1}{2\epsilon} \int_0^T \mathbb{E} \left[ \left\| \sigma_t \mathbf{u}_{v_\theta}(\boldsymbol{X}_t, t) - \frac{\boldsymbol{X}_T - \boldsymbol{X}_t}{T - t} \right\|^2 \right] dt
+\mathcal{L}(\theta) = \frac{1}{2\epsilon} \int_0^T \mathbb{E}\left[ \left\| \sigma_t \boldsymbol{u}_{v_\theta}(\boldsymbol{X}_t, t) - \frac{\boldsymbol{X}_T - \boldsymbol{X}_t}{T - t} \right\|^2 \right] dt
 $$
 
-where the drift $\sigma_t \mathbf{u}_{v_\theta}(\mathbf{x}, t)$ admits the corrected closed form:
+where the drift $\sigma_t \boldsymbol{u}_{\theta}(\boldsymbol{x}, t)$ admits the **corrected** closed form:
 
 $$
-\sigma_t \mathbf{u}_{v_\theta}(\mathbf{x}, t) = \epsilon \nabla_{\mathbf{x}} \log \left( \mathcal{N}\big(\mathbf{x} \mid \mathbf{0}, (T-t)\epsilon \mathbf{I}_d\big) \sum_{k=1}^{K} \alpha_k \mathcal{N}(\boldsymbol{\mu}_k \mid \mathbf{0}, \epsilon \boldsymbol{\Sigma}_k) \mathcal{N}\left( \boldsymbol{A}_k(t)^{-1} \boldsymbol{h}_k(\mathbf{x}, t) \;\middle|\; \mathbf{0}, \boldsymbol{A}_k(t)^{-1} \right) \right)
+\sigma_t \boldsymbol{u}_{\theta}(\boldsymbol{x}, t) = \epsilon \, \nabla_{\boldsymbol{x}} \log \left( \mathcal{N}(\boldsymbol{x} \mid 0, (T-t)\epsilon \, \mathbf{I}_d) \sum_{k=1}^{K} \alpha_k \, \mathcal{N}(\boldsymbol{\mu}_k \mid 0, \epsilon \boldsymbol{\Sigma}_k) \, \mathcal{N}\big( \boldsymbol{A}_k(t)^{-1} \boldsymbol{h}_k(t) \,\big|\, 0, \boldsymbol{A}_k(t)^{-1} \big)^{-1} \right)
 $$
 
-where:
-* $\boldsymbol{A}_k(t) := \frac{t}{T(T-t)\epsilon} \mathbf{I}_d + \frac{\boldsymbol{\Sigma}_k^{-1}}{\epsilon}$
-* $\boldsymbol{h}_k(\mathbf{x}, t) := \frac{1}{\epsilon} \left( \frac{\mathbf{x}}{T-t} + \boldsymbol{\Sigma}_k^{-1} \boldsymbol{\mu}_k \right)$
+where
+
+$$
+\boldsymbol{A}_k(t) := \frac{t}{T(T-t)\epsilon} \, \mathbf{I}_d + \frac{\boldsymbol{\Sigma}_k^{-1}}{\epsilon}, \qquad \boldsymbol{h}_k(\boldsymbol{x}, t) := \frac{1}{\epsilon} \left( \frac{\boldsymbol{x}}{T-t} + \boldsymbol{\Sigma}_k^{-1} \boldsymbol{\mu}_k \right)
+$$
 
 ## Experimental Results
 
