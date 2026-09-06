@@ -45,7 +45,7 @@ $$
 ## Experimental Results
 
 ### Experiment 1: Gaussian-to-Swiss Roll
-2D Gaussian-to-Swiss-roll transport task across three entropic regularization regimes, $\epsilon \in \{1, 0.1, 0.01\}$
+2D Gaussian-to-Swiss-roll transport task across three entropic regularization regimes, $\epsilon \in {1, 0.1, 0.01}$
 
 
 <img src="images/swiss-full-ind.png" width="1000" alt="Swiss Roll Experiment">
